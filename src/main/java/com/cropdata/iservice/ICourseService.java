@@ -2,16 +2,15 @@ package com.cropdata.iservice;
 
 import java.util.List;
 
-import com.cropdata.dto.CourseDTO;
 import com.cropdata.entity.Course;
 
 public interface ICourseService {
 
-	public Course saveCourse(CourseDTO courseDTO);
+	public Course saveCourse(Course course);
 
 	public List<Course> getAllCourse();
 
-	public Course updateCourse(CourseDTO courseDTO);
+	public Course updateCourse(Course course);
 
 	public Course deleteCourseById(Integer cId);
 

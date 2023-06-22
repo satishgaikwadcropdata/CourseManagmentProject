@@ -40,7 +40,7 @@ public class LanguageController {
 	public ResponseEntity<?> createLanguage(@RequestBody LanguageDTO languageDTO) {
 		Language language = new Language();
 		try {
-			language = iLanguageService.saveLanguage(languageDTO);
+			language = iLanguageService.saveLanguage(languageMapper.toLanguage(languageDTO));
 			data = language;
 			code = "CREATED";
 		} catch (LanguageException customerNotFoundException) {
@@ -112,7 +112,7 @@ public class LanguageController {
 
 		Language language = null;
 		try {
-			language = iLanguageService.updateLanguage(languageDTO);
+			language = iLanguageService.updateLanguage(languageMapper.toLanguage(languageDTO));
 			data = language;
 		} catch (LanguageException customerNotFoundException) {
 			data = null;

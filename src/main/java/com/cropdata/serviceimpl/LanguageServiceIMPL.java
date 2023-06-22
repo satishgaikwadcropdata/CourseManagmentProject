@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cropdata.dto.LanguageDTO;
 import com.cropdata.entity.Language;
 import com.cropdata.exception.LanguageException;
 import com.cropdata.iservice.ILanguageService;
@@ -23,10 +22,10 @@ public class LanguageServiceIMPL implements ILanguageService {
 	private LanguageMapper languageMapper;
 
 	@Override
-	public Language saveLanguage(LanguageDTO languageDTO) {
-		Language language = null;
+	public Language saveLanguage(Language language) {
+		Language language1 = null;
 		try {
-			language = languageRepository.save(languageMapper.toLanguage(languageDTO));
+			language1 = languageRepository.save(language);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,20 +61,20 @@ public class LanguageServiceIMPL implements ILanguageService {
 	}
 
 	@Override
-	public Language updateLanguage(LanguageDTO languageDTO) {
-		Language language = languageRepository.findById(languageDTO.getLId()).get();
+	public Language updateLanguage(Language language) {
+		Language language1 = languageRepository.findById(language.getLId()).get();
 		try {
 
-			if (language.getLId() != null) {
+			if (language1.getLId() != null) {
 
-				language = languageRepository.save(languageMapper.toLanguage(languageDTO));
+				language1 = languageRepository.save(language);
 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new LanguageException();
 		}
-		return language;
+		return language1;
 	}
 
 	@Override

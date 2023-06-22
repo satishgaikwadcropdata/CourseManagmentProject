@@ -41,7 +41,7 @@ public class WriterController {
 	public ResponseEntity<?> createCourse(@RequestBody WriterDTO writerDTO) {
 		Writer writer = new Writer();
 		try {
-			writer = iWriterService.saveCourse(writerDTO);
+			writer = iWriterService.saveCourse(writerMapper.toWriter(writerDTO));
 			data = writer;
 			code = "CREATED";
 		} catch (WriterNotFoundException writerNotFoundException) {
@@ -91,7 +91,7 @@ public class WriterController {
 
 		Writer writer = null;
 		try {
-			writer = iWriterService.updateWriter(writerDTO);
+			writer = iWriterService.updateWriter(writerMapper.toWriter(writerDTO));
 			data = writer;
 		} catch (WriterNotFoundException writerNotFoundException) {
 			data = null;

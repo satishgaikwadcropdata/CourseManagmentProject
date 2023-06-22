@@ -40,7 +40,7 @@ public class CourseController {
 	public ResponseEntity<?> createCourse(@RequestBody CourseDTO courseDTO) {
 		Course course = new Course();
 		try {
-			course = iCourseService.saveCourse(courseDTO);
+			course = iCourseService.saveCourse(courseMapper.toCourse(courseDTO));
 			data = course;
 			code = "CREATED";
 		} catch (CourseNotFoundException courseNotFoundException) {
@@ -90,7 +90,7 @@ public class CourseController {
 
 		Course course = null;
 		try {
-			course = iCourseService.updateCourse(courseDTO);
+			course = iCourseService.updateCourse(courseMapper.toCourse(courseDTO));
 			data = course;
 		} catch (CourseNotFoundException courseNotFoundException) {
 			data = null;

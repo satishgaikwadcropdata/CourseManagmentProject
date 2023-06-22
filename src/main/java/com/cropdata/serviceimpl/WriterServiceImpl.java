@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cropdata.dto.WriterDTO;
 import com.cropdata.entity.Writer;
 import com.cropdata.exception.WriterNotFoundException;
 import com.cropdata.iservice.IWriterService;
@@ -23,16 +22,16 @@ public class WriterServiceImpl implements IWriterService {
 	private WriterMapper writerMapper;
 
 	@Override
-	public Writer saveCourse(WriterDTO writerDTO) {
-		Writer writer = null;
+	public Writer saveCourse(Writer writer) {
+		Writer writer1 = null;
 		try {
-			writer = writerRepository.save(writerMapper.toWriter(writerDTO));
+			writer1 = writerRepository.save(writer);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new WriterNotFoundException("Customer Present");
 		}
-		return writer;
+		return writer1;
 	}
 
 	@Override
@@ -48,20 +47,20 @@ public class WriterServiceImpl implements IWriterService {
 	}
 
 	@Override
-	public Writer updateWriter(WriterDTO writerDTO) {
-		Writer writer = writerRepository.findById(writerDTO.getWId()).get();
+	public Writer updateWriter(Writer writer) {
+		Writer writer1 = writerRepository.findById(writer.getWId()).get();
 		try {
 
-			if (writer.getWId() != null) {
+			if (writer1.getWId() != null) {
 
-				writer = writerRepository.save(writerMapper.toWriter(writerDTO));
+				writer1 = writerRepository.save(writer);
 
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new WriterNotFoundException();
 		}
-		return writer;
+		return writer1;
 	}
 
 	@Override

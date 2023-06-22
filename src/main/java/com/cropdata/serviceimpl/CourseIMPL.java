@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cropdata.dto.CourseDTO;
 import com.cropdata.entity.Course;
 import com.cropdata.exception.CourseNotFoundException;
 import com.cropdata.iservice.ICourseService;
@@ -23,16 +22,16 @@ public class CourseIMPL implements ICourseService {
 	private CourseMapper courseMapper;
 
 	@Override
-	public Course saveCourse(CourseDTO courseDTO) {
-		Course course = null;
+	public Course saveCourse(Course course) {
+		Course course1 = null;
 		try {
-			course = courseRepository.save(courseMapper.toCourse(courseDTO));
+			course1 = courseRepository.save(course);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new CourseNotFoundException("Customer Present");
 		}
-		return course;
+		return course1;
 	}
 
 	@Override
@@ -48,13 +47,13 @@ public class CourseIMPL implements ICourseService {
 	}
 
 	@Override
-	public Course updateCourse(CourseDTO courseDTO) {
-		Course course = courseRepository.findById(courseDTO.getCId()).get();
+	public Course updateCourse(Course course) {
+		Course course1 = courseRepository.findById(course.getCId()).get();
 		try {
 
-			if (course.getCId() != null) {
+			if (course1.getCId() != null) {
 
-				course = courseRepository.save(courseMapper.toCourse(courseDTO));
+				course1 = courseRepository.save(course);
 
 			}
 		} catch (Exception e) {
